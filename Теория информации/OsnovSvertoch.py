@@ -83,3 +83,16 @@ def nolVregister():
         registrs[i] = registrs[i - 1]
     registrs[0] = 0
     return registrs
+def ProverochBits():
+    print("!!!!!!!!!!!!!!",registrs)
+    global proverochnie_bits
+    proverochnie_bits = ''
+    for j in range(len(dvoinoySpisElemIndex)):
+        c = 0
+        for m in range(len(dvoinoySpisElemIndex[j])):
+            c += registrs[int(dvoinoySpisElemIndex[j][m])]
+        if c % 2 == 1:
+            proverochnie_bits += ''.join('1')
+        elif c % 2 == 0:
+            proverochnie_bits += ''.join('0')
+    return proverochnie_bits
