@@ -62,3 +62,17 @@ for i in range(0,len(poFactu),n):
 
 zakodirstr="".join(zakodir)
 print("Закодированная последовательность: ", zakodirstr)
+
+#Декодирование
+
+registrs = []
+kol_registrov = 0
+
+decodir_str = ''
+# находим кол-во регистров по максимальному элементу в сумматоре и обнуляем их
+for i in dvoinoySpisElemIndex:
+    if kol_registrov < int(max(i)):
+        kol_registrov = int(max(i))
+
+for i in range(kol_registrov + 1):
+    registrs.append(0)
