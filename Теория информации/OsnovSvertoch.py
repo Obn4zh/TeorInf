@@ -22,3 +22,18 @@ print(spisok_text_to_bit)
 
 
 print("Введённая последовательность в бинарном представлении: ",spis_posled)
+
+poFactu=[]
+registr=np.zeros(3)
+
+dvoinoySpisElemIndex=[]
+for i in range(n):
+    spiselemindex=[]
+    elemindex=input("Введите элементы для сумматора через (,): ")
+    spiselemindex=elemindex.split(",")
+    dvoinoySpisElemIndex.append(spiselemindex)
+
+
+print("Индексы слогаемых: ",dvoinoySpisElemIndex)
+print("Состояния регистра:")
+print(registr)
