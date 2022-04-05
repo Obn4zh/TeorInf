@@ -96,3 +96,13 @@ def ProverochBits():
         elif c % 2 == 0:
             proverochnie_bits += ''.join('0')
     return proverochnie_bits
+
+for i in range(len(zakodir)):
+    nolVregister()
+    ProverochBits()
+    if proverochnie_bits != zakodir[i]:
+        registrs[0] = 1
+        decodir_str += ''.join('1')
+    elif proverochnie_bits == zakodir[i]:
+        decodir_str += ''.join('0')
+print("Декодированная последовательность в бинарном представлении: ",decodir_str)
