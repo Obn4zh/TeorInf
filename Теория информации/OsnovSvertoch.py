@@ -37,3 +37,28 @@ for i in range(n):
 print("Индексы слогаемых: ",dvoinoySpisElemIndex)
 print("Состояния регистра:")
 print(registr)
+
+poFactu=[]
+for i in range(len(spis_posled)):
+    registr=np.delete(registr,2)
+    registr=np.insert(registr,0,spis_posled[i])
+    print(registr)
+
+    for j in range(len(dvoinoySpisElemIndex)):
+        spisElemSlogaem=[]
+        for k in dvoinoySpisElemIndex[j]:
+            spisElemSlogaem.append(registr[int(k)])
+        a=sum(spisElemSlogaem)
+        poFactu.append(a%2)
+
+for i in range(len(poFactu)):
+    poFactu[i]=int(poFactu[i])
+    poFactu[i]=str(poFactu[i])
+
+zakodir=[]
+
+for i in range(0,len(poFactu),n):
+    zakodir.append("".join(poFactu[i:i+n]))
+
+zakodirstr="".join(zakodir)
+print("Закодированная последовательность: ", zakodirstr)
