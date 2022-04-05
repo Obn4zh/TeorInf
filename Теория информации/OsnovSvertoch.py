@@ -106,3 +106,17 @@ for i in range(len(zakodir)):
     elif proverochnie_bits == zakodir[i]:
         decodir_str += ''.join('0')
 print("Декодированная последовательность в бинарном представлении: ",decodir_str)
+
+def text_from_bits(binstring, encoding='utf-8', errors='surrogatepass'):
+    n = int(binstring, 2)
+    return int2bytes(n).decode(encoding, errors)
+
+
+def int2bytes(i):
+    hex_string = '%x' % i
+    n = len(hex_string)
+    return binascii.unhexlify(hex_string.zfill(n + (n & 1)))
+
+decodir_poFactu = text_from_bits(decodir_str)
+
+print("Декодированная последовательность: ",decodir_poFactu)
