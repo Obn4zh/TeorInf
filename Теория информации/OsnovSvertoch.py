@@ -6,13 +6,7 @@ import tkinter.messagebox as mb
 
 dvoinoySpisElemIndex=[]
 
-def kolsum():
-    global n
-    n = text2.get()
-    if not n.isdigit():
-        mb.showwarning("Предупреждение", "Сумматор должен быть числом")
-    else:
-        n = int(n)
+
 
 def summatory():
     global elemindex
@@ -44,6 +38,16 @@ def summatory():
 
 
     text3.delete(0, END)
+
+def kolsum():
+    global n
+    dvoinoySpisElemIndex.clear()
+    n = ""
+    n = text2.get()
+    if not n.isdigit():
+        mb.showwarning("Предупреждение", "Сумматор должен быть числом")
+    else:
+        n = int(n)
 
 
 def ooo():
@@ -131,7 +135,7 @@ def ooo():
 
 
     #ДЕКОДИРОВАНИЕ
-
+def decodir():
     registrs = []
     kol_registrov = 0
 
@@ -230,6 +234,9 @@ btn_kol.place(x=660,y=20)
 btn=Button(text="кодировать",command=ooo)
 btn.pack()
 btn.place(x=5,y=100)
+btn0=Button(text="декодировать",command=decodir)
+btn0.pack()
+btn0.place(x=5,y=150)
 
 
 
