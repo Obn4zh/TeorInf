@@ -76,3 +76,10 @@ for i in dvoinoySpisElemIndex:
 
 for i in range(kol_registrov + 1):
     registrs.append(0)
+
+
+def nolVregister():
+    for i in reversed(range(len(registrs))):
+        registrs[i] = registrs[i - 1]
+    registrs[0] = 0
+    return registrs
