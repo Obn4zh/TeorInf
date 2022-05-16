@@ -3,15 +3,12 @@ import binascii
 from tkinter import *
 import tkinter.messagebox as mb
 
-
 dvoinoySpisElemIndex=[]
-
 
 
 def summatory():
     global elemindex
     global dvoinoySpisElemIndex
-    global dvoinoySpisElemIndexgryaz
     global schet_zapyat
     global schet_chisel
 
@@ -30,12 +27,13 @@ def summatory():
         mb.showwarning("Предупреждение", "Неверно введенные сумматоры\nВведите другие")
         elemindex=""
         dvoinoySpisElemIndex.clear()
+        text3.delete(0, END)
+
     if i % 2 == 0:
         if int(elemindex[i]) > 2:
             mb.showwarning("Предупреждение", "Неверно введенные сумматоры\nВведите другие")
             dvoinoySpisElemIndex.clear()
-
-
+            text3.delete(0, END)
 
     text3.delete(0, END)
 
@@ -136,32 +134,31 @@ def ooo():
 
     #ДЕКОДИРОВАНИЕ
 def decodir():
-    registrs = []
-    kol_registrov = 0
+    registr = []
+    kol_razryadov = 0
 
     decodir_str = ''
-    # находим кол-во регистров по максимальному элементу в сумматоре и обнуляем их
     for i in dvoinoySpisElemIndex:
-        if kol_registrov < int(max(i)):
-            kol_registrov = int(max(i))
+        if kol_razryadov < int(max(i)):
+            kol_razryadov = int(max(i))
 
-    for i in range(kol_registrov + 1):
-        registrs.append(0)
+    for i in range(kol_razryadov + 1):
+        registr.append(0)
 
     def nolVregister():
-        for i in reversed(range(len(registrs))):
-            registrs[i] = registrs[i - 1]
-        registrs[0] = 0
-        return registrs
+        for i in reversed(range(len(registr))):
+            registr[i] = registr[i - 1]
+        registr[0] = 0
+        return registr
 
     def ProverochBitki():
-        print("!!!!!!!!!!!!!!",registrs)
+        print("!!!!!!!!!!!!!!",registr)
         global proverochnie_bits
         proverochnie_bits = ''
         for j in range(len(dvoinoySpisElemIndex)):
             c = 0
             for m in range(len(dvoinoySpisElemIndex[j])):
-                c += registrs[int(dvoinoySpisElemIndex[j][m])]
+                c += registr[int(dvoinoySpisElemIndex[j][m])]
             if c % 2 == 1:
                 proverochnie_bits += ''.join('1')
             elif c % 2 == 0:
@@ -172,7 +169,7 @@ def decodir():
         nolVregister()
         ProverochBitki()
         if proverochnie_bits != zakodir[i]:
-            registrs[0] = 1
+            registr[0] = 1
             decodir_str += ''.join('1')
         elif proverochnie_bits == zakodir[i]:
             decodir_str += ''.join('0')
@@ -237,8 +234,6 @@ btn.place(x=5,y=100)
 btn0=Button(text="декодировать",command=decodir)
 btn0.pack()
 btn0.place(x=5,y=150)
-
-
 
 
 lbl = Label(text=0, bg='#98FB98',bd=5,font=8)
