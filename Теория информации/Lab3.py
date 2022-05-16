@@ -41,6 +41,7 @@ plt.imshow(photo)
 plt.axis("off")
 plt.show()
 
+
 #Третья часть
 
 
