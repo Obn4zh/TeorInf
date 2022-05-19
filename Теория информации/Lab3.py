@@ -8,6 +8,18 @@ import numpy as np
 from sympy import *
 import math
 
+def oshibaisya2(opa1):
+
+    rng=list(range(0,19))
+    rng1=random.sample(rng,2)
+    for i in range(len(rng1)):
+        if (opa1[rng1[i]])=="1":
+            opa1 = opa1[:rng1[i]] + "0" + opa1[rng1[i] + 1:]
+        else:
+            opa1 = opa1[:rng1[i]] + "1" + opa1[rng1[i] + 1:]
+
+    return (opa1)
+
 def oshibaisya(opa):
     global kolOsh
     k=0
@@ -46,18 +58,18 @@ Way="D:\ТеорИнф3Курс\для тестов.bmp"
 photo=img.imread(Way)
 
 #Вторая часть
-razmer=photo.shape
-
-y=razmer[0]
-x=razmer[1]
-
-for i in range(y):
-    for j in range(x):
-        kolOsh=2
-        photo[i][j][0] = int(oshibaisya(photo[i][j][0]))
-        photo[i][j][1] = int(oshibaisya(photo[i][j][1]))
-        photo[i][j][2] = int(oshibaisya(photo[i][j][2]))
-print(photo[0][0])
+# razmer=photo.shape
+#
+# y=razmer[0]
+# x=razmer[1]
+#
+# for i in range(y):
+#     for j in range(x):
+#         kolOsh=2
+#         photo[i][j][0] = int(oshibaisya(photo[i][j][0]))
+#         photo[i][j][1] = int(oshibaisya(photo[i][j][1]))
+#         photo[i][j][2] = int(oshibaisya(photo[i][j][2]))
+# print(photo)
 # plt.imshow(photo)
 # plt.axis("off")
 # plt.show()
@@ -87,7 +99,8 @@ for i in range(len(matrix)):
             break
 matrix = np.delete(matrix,np.s_[tutu],axis=1)
 
-matrix2 =np.array ([[1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0],
+matrix2 =np.array ([
+ [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1],
  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0],
  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0],
@@ -118,6 +131,7 @@ for i in range(0, len(hihi)):
 I = np.array(I)
 print("")
 print("i=\n", I)
+print(len(I))
 matrix_c = np.dot(I, matrix2)
 
 for i in range(len(matrix_c)):
@@ -182,12 +196,11 @@ print("S =\n", s)
 print("e =\n", e)
 print("HsysT =\n", HsysT)
 
-
 Way="D:\ТеорИнф3Курс\для тестов.bmp"
 photo=img.imread(Way)
 infslov=[]
 razmer1=photo.shape
-
+print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",razmer1)
 
 l=[]
 l1=[]
@@ -201,18 +214,18 @@ for i in range(yy):
 infslov=np.array(infslov)
 infslov = infslov.reshape(-1, 1)
 
+
 for i in range(len(infslov)):
-    for j in range(len(infslov[i])):
-        l.append(list(infslov[i][j]))
+    l.append(list(infslov[i][0]))
 for i in range(len(l)):
-    for j in range(len([l[i][j]])):
+    for j in range(0,8):
         l1.append(int(l[i][j]))
 l1=np.array(l1)
 l1 = l1.reshape(-1, 8)
+print("Инф слова\n",l1)
 
-print("____________")
+# S вывод
 sss = np.dot(l1, matrix2)
-
 for i in range(len(sss)):
     for j in range(len(sss[i])):
         if sss[i][j] % 2 == 0:
@@ -230,15 +243,119 @@ for i in range(len(sss)):
 sss1=np.array(sss1)
 sss1 = sss1.reshape(-1, 19)
 
+
+
 sss2=[]
 
 for i in range(len(sss1)):
     sss2.append("".join(sss1[i]))
 sss2=np.array(sss2)
 sss2=sss2.reshape(-1,1)
+Cn=sss2
 
-for i in range(len(sss2)):
-    for j in range(len(sss2[i])):
-        kolosh=2
-        sss2[i][j]=oshibaisya2(sss2[i][j])
+Vmatrix=[]
 
+for i in range(len(Cn)):
+    pipa=oshibaisya2(Cn[i][0])
+    Vmatrix.append(pipa)
+
+Vmatrix=np.array(Vmatrix)
+Vmatrix=np.reshape(Vmatrix,(len(Vmatrix),1))
+VmatrixNuzh=[]
+for i in range(len(Vmatrix)):
+    VmatrixNuzh.append(list(Vmatrix[i][0]))
+for i in range(len(VmatrixNuzh)):
+    for j in range(len(VmatrixNuzh[i])):
+        VmatrixNuzh[i][j]=int(VmatrixNuzh[i][j])
+VmatrixNuzh=np.array(VmatrixNuzh)
+
+print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n",VmatrixNuzh)
+
+
+
+pupa = []
+c1 = []
+
+sSHtrih=[]
+decod=[]
+iDecod=[]
+pp=[]
+for j in range(len(VmatrixNuzh)):
+    v1 = []
+    v = VmatrixNuzh[j].tolist()
+    v1=np.array(v)
+    s1 = np.dot(v1, HsysT)
+
+    sSHtrih.append(list(s1))
+
+for i in range(len(sSHtrih)):
+    for j in range(len(sSHtrih[i])):
+        sSHtrih[i][j]=int(sSHtrih[i][j])
+        if (sSHtrih[i][j] % 2 == 0):
+            sSHtrih[i][j] = 0
+        if sSHtrih[i][j] > 1 and sSHtrih[i][j] % 2!=0:
+            sSHtrih[i][j]=1
+
+p=0
+for i in range(0, len(sSHtrih)):
+    for j in range(0,len(s)):
+        if (sSHtrih[i] == s[j]).all():
+            p = j
+            e1 = e[p]
+            pp.append(e1)
+pp=np.array(pp)
+
+# print("e(nuzh)\n",pp)
+print(len(pp))
+
+
+
+
+
+Cshtrih=np.add(VmatrixNuzh,pp)
+
+for i in range(len(Cshtrih)):
+    for j in range(len(Cshtrih[i])):
+        if (Cshtrih[i][j] % 2 == 0).all():
+            Cshtrih[i][j] = 0
+        else:
+            Cshtrih[i][j] = 1
+
+print("C`\n",Cshtrih)
+print(len(Cshtrih))
+
+print('C\n',matrix_c)
+print(len(matrix_c))
+
+
+lupa=[]
+for i in range(0, len(Cshtrih)):
+    for j in range(0, len(matrix_c)):
+        if (Cshtrih[i] == matrix_c[j]).all():
+            lupa.append(I[j])
+lupa=np.array(lupa)
+
+print(photo)
+iiiiii=[]
+print("i\n",lupa)
+print(len(lupa))
+for i in range(len(lupa)):
+    iiiiii.append((int("".join(map(str,lupa[i])),2)))
+
+pom1=[]
+pom2=[]
+iiiiii=np.array(iiiiii)
+for i in range(0,len(iiiiii),3):
+    pom1.append(iiiiii[i])
+    pom1.append(iiiiii[i+1])
+    pom1.append(iiiiii[i+2])
+    pom2.append(pom1)
+    pom1=[]
+Inuzh=[np.array(pom2)]
+Inuzh=np.array(Inuzh)
+Inuzh=np.reshape(Inuzh,(razmer1))
+# print("i (декодир инф слова): \n", Inuzh)
+
+plt.imshow(Inuzh)
+plt.axis("off")
+plt.show()
